@@ -11,7 +11,7 @@ interface HeroSectionProps {
 
 export default function HeroSection({ headline, subheadline, image }: HeroSectionProps) {
   return (
-    <section className="relative w-full overflow-hidden" style={{ minHeight: '90vh' }}>
+    <section className="relative w-full overflow-hidden" style={{ minHeight: '100vh' }}>
       {image ? (
         <DatoCmsImage
           data={image.responsiveImage}
@@ -25,7 +25,7 @@ export default function HeroSection({ headline, subheadline, image }: HeroSectio
       {/* Dark gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/60 via-zinc-950/40 to-zinc-950/80" />
 
-      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center" style={{ minHeight: '90vh' }}>
+      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center" style={{ minHeight: '100vh' }}>
         {/* Gold rule above */}
         <div className="mb-8 h-px w-16 bg-gold-500 opacity-80" />
 
