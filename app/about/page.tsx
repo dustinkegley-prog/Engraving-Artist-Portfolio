@@ -43,7 +43,7 @@ export default async function AboutPage() {
   }
 
   return (
-    <div className="mx-auto max-w-5xl px-6 py-20">
+    <div className="mx-auto max-w-5xl px-6 py-12 md:py-20">
       <div className="mb-16 text-center">
         <div className="mx-auto mb-6 h-px w-12 bg-gold-500 opacity-60" />
         <h1 className="font-serif text-5xl font-light tracking-[0.15em] text-stone-100">
@@ -54,7 +54,7 @@ export default async function AboutPage() {
 
       <div className="flex flex-col gap-12 md:flex-row md:items-start md:gap-16">
         {settings?.aboutPhoto ? (
-          <div className="w-full flex-shrink-0 md:w-72">
+          <div className="w-full max-w-sm mx-auto flex-shrink-0 md:max-w-none md:mx-0 md:w-72">
             <DatoCmsImage
               data={settings.aboutPhoto.responsiveImage}
               className="w-full border border-zinc-800"
@@ -62,7 +62,7 @@ export default async function AboutPage() {
             />
           </div>
         ) : (
-          <div className="h-80 w-full flex-shrink-0 md:w-72 bg-zinc-900 border border-zinc-800 flex items-center justify-center">
+          <div className="h-80 w-full max-w-sm mx-auto flex-shrink-0 md:max-w-none md:mx-0 md:w-72 bg-zinc-900 border border-zinc-800 flex items-center justify-center">
             <span className="text-[11px] tracking-widest uppercase text-zinc-600">[PLACEHOLDER] Photo</span>
           </div>
         )}
