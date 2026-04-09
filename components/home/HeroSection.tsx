@@ -32,12 +32,12 @@ export default function HeroSection({ headline, subheadline, image }: HeroSectio
         {/* Gold rule above */}
         <div className="mb-8 h-px w-16 bg-gold-500 opacity-80" />
 
-        <h1 className="font-serif text-5xl font-light tracking-[0.1em] text-stone-100 sm:text-7xl">
+        <h1 className="font-serif text-4xl font-light tracking-[0.1em] text-stone-100 sm:text-5xl lg:text-7xl">
           {headline ?? '[PLACEHOLDER] Headline'}
         </h1>
 
         {subheadline && (
-          <p className="mt-6 text-sm tracking-[0.3em] uppercase text-stone-400 max-w-md">
+          <p className="mt-6 text-sm tracking-[0.15em] sm:tracking-[0.3em] uppercase text-stone-400 max-w-xs sm:max-w-md">
             {subheadline}
           </p>
         )}
