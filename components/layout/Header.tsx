@@ -1,6 +1,7 @@
 // components/layout/Header.tsx
 import Link from 'next/link';
 import { getSiteSettings } from '@/lib/datocms';
+import MobileNav from './MobileNav';
 
 const navLinks = [
   { href: '/portfolio', label: 'Portfolio' },
@@ -25,7 +26,8 @@ export default async function Header() {
           </span>
         </Link>
 
-        <nav aria-label="Main navigation">
+        {/* Desktop nav — hidden on mobile */}
+        <nav aria-label="Main navigation" className="hidden md:block">
           <ul className="flex items-center gap-8">
             {navLinks.map(({ href, label }) => (
               <li key={href}>
@@ -39,6 +41,9 @@ export default async function Header() {
             ))}
           </ul>
         </nav>
+
+        {/* Mobile nav — hamburger + overlay */}
+        <MobileNav />
       </div>
     </header>
   );
