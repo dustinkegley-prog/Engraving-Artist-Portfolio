@@ -56,7 +56,7 @@ export default async function PortfolioPiecePage({ params }: Props) {
   const meta = [piece.medium, piece.dimensions, piece.year].filter(Boolean).join(' · ');
 
   return (
-    <div className="mx-auto max-w-5xl px-6 py-20">
+    <div className="mx-auto max-w-5xl px-6 py-12 md:py-20">
       <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-start">
         {/* Image */}
         <div className="overflow-hidden bg-zinc-900 border border-zinc-800">
