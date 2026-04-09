@@ -15,8 +15,9 @@ export default function HeroSection({ headline, subheadline, image }: HeroSectio
       {image ? (
         <DatoCmsImage
           data={image.responsiveImage}
-          className="absolute inset-0 h-full w-full object-cover"
-          pictureClassName="absolute inset-0 h-full w-full object-cover"
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+          pictureClassName="absolute inset-0 w-full h-full"
+          imgClassName="w-full h-full object-cover"
         />
       ) : (
         <div className="absolute inset-0 bg-zinc-900" />
