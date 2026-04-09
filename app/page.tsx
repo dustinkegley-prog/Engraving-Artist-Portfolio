@@ -85,6 +85,7 @@ export default async function HomePage() {
               <PortfolioCard
                 key={piece.id}
                 title={piece.title}
+                slug={piece.slug}
                 coverImage={piece.coverImage}
                 medium={piece.medium}
                 year={piece.year}

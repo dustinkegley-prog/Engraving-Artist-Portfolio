@@ -3,7 +3,7 @@ import PortfolioCard from './PortfolioCard';
 import type { PortfolioPiece } from '@/lib/types';
 
 interface GalleryGridProps {
-  pieces: Pick<PortfolioPiece, 'id' | 'title' | 'coverImage' | 'medium' | 'year'>[];
+  pieces: Pick<PortfolioPiece, 'id' | 'title' | 'slug' | 'coverImage' | 'medium' | 'year'>[];
 }
 
 export default function GalleryGrid({ pieces }: GalleryGridProps) {
