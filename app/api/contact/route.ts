@@ -11,12 +11,32 @@ export async function POST(request: Request) {
     !body ||
     typeof body.name !== 'string' ||
     typeof body.email !== 'string' ||
-    typeof body.message !== 'string'
+    typeof body.message !== 'string' ||
+    typeof body.turnstileToken !== 'string'
   ) {
     return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
   }
 
-  const { name, email, message } = body as { name: string; email: string; message: string };
+  const { name, email, message, turnstileToken } = body as {
+    name: string;
+    email: string;
+    message: string;
+    turnstileToken: string;
+  };
+
+  // Verify Turnstile token with Cloudflare
+  const verification = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      secret: process.env.TURNSTILE_SECRET_KEY,
+      response: turnstileToken,
+    }),
+  });
+  const verificationData = await verification.json() as { success: boolean };
+  if (!verificationData.success) {
+    return NextResponse.json({ error: 'Security check failed. Please try again.' }, { status: 403 });
+  }
 
   if (!name.trim() || !email.trim() || !message.trim()) {
     return NextResponse.json({ error: 'All fields are required' }, { status: 400 });

@@ -1,23 +1,32 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { Turnstile } from '@marsidev/react-turnstile';
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error';
 
 export default function ContactForm() {
   const [state, setState] = useState<FormState>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const turnstileToken = useRef<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setState('submitting');
     setErrorMessage('');
 
+    if (!turnstileToken.current) {
+      setErrorMessage('Please wait for the security check to complete.');
+      setState('error');
+      return;
+    }
+
     const form = e.currentTarget;
     const body = {
       name: (form.elements.namedItem('name') as HTMLInputElement).value,
       email: (form.elements.namedItem('email') as HTMLInputElement).value,
       message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
+      turnstileToken: turnstileToken.current,
     };
 
     const res = await fetch('/api/contact', {
@@ -55,6 +64,13 @@ export default function ContactForm() {
         <label htmlFor="message" className={labelClass}>Message</label>
         <textarea id="message" name="message" rows={6} required placeholder="Tell me about your project…" className={inputClass} />
       </div>
+
+      <Turnstile
+        siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? ''}
+        onSuccess={(token) => { turnstileToken.current = token; }}
+        onExpire={() => { turnstileToken.current = null; }}
+        options={{ theme: 'dark' }}
+      />
 
       <button
         type="submit"
