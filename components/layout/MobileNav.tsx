@@ -13,14 +13,19 @@ export default function MobileNav() {
   const [open, setOpen] = useState(false);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const wasOpenRef = useRef(false);
 
   useEffect(() => {
     if (open) {
+      wasOpenRef.current = true;
       document.body.classList.add('overflow-hidden');
       closeRef.current?.focus();
     } else {
       document.body.classList.remove('overflow-hidden');
-      hamburgerRef.current?.focus();
+      if (wasOpenRef.current) {
+        hamburgerRef.current?.focus();
+        wasOpenRef.current = false;
+      }
     }
     return () => {
       document.body.classList.remove('overflow-hidden');
