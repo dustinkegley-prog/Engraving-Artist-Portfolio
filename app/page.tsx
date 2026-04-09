@@ -10,7 +10,7 @@ const HOME_QUERY = `
       heroHeadline
       heroSubheadline
       heroImage {
-        responsiveImage(imgixParams: { w: 1400, fit: crop, auto: format }) {
+        responsiveImage(imgixParams: { w: 3200, fit: crop, auto: format }) {
           src
           width
           height

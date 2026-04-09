@@ -13,12 +13,14 @@ export default function HeroSection({ headline, subheadline, image }: HeroSectio
   return (
     <section className="relative w-full overflow-hidden" style={{ minHeight: '100vh' }}>
       {image ? (
-        <DatoCmsImage
-          data={image.responsiveImage}
-          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-          pictureClassName="absolute inset-0 w-full h-full"
-          imgClassName="w-full h-full object-cover"
-        />
+        <div className="absolute inset-0 overflow-hidden">
+          <DatoCmsImage
+            data={image.responsiveImage}
+            className="!block !w-full !h-full !max-w-none"
+            pictureClassName="!absolute !inset-0 !w-full !h-full"
+            imgClassName="!w-full !h-full !object-cover"
+          />
+        </div>
       ) : (
         <div className="absolute inset-0 bg-zinc-900" />
       )}
